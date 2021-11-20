@@ -14,9 +14,12 @@ export const computePairAddress = ({
   tokenB: Token
 }): string => {
   const [token0, token1] = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA] // does safety checks
-  return getCreate2Address(
+
+  let ret = getCreate2Address(
     factoryAddress,
     keccak256(['bytes'], [pack(['address', 'address'], [token0.address, token1.address])]),
     INIT_CODE_HASH[token0.chainId]
   )
+  console.log("anngdev INIT_CODE_HASH",token0.chainId, INIT_CODE_HASH[token0.chainId], token0, token1, ret)
+  return ret
 }

@@ -39,5 +39,7 @@ export const computeConstantProductPoolAddress = ({
   })
 
   // Compute pool address
-  return getCreate2Address(factoryAddress, keccak256(['bytes'], [deployData]), CONSTANT_PRODUCT_POOL_INIT_CODE_HASH)
+  let ret = getCreate2Address(factoryAddress, keccak256(['bytes'], [deployData]), CONSTANT_PRODUCT_POOL_INIT_CODE_HASH)
+  console.log("anngdev CONSTANT_PRODUCT_POOL_INIT_CODE_HASH",CONSTANT_PRODUCT_POOL_INIT_CODE_HASH, token0, token1, ret)
+  return ret
 }
